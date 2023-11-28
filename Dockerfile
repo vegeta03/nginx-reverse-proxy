@@ -1,13 +1,17 @@
-# Stage 1: Build the application
-FROM node:latest as build-step
+##### Stage 1
+FROM node:lts as node
+LABEL author="Shyam Sreenivasan"
 WORKDIR /app
-COPY package.json ./
+COPY package.json package-lock.json ./
 RUN npm install
 COPY . .
 RUN npm run build
 
-
-# Stage 2: Serve the application
+##### Stage 2
 FROM nginx:alpine
-COPY --from=build-step /app/dist/ng-rails /usr/share/nginx/html
+VOLUME /var/cache/nginx
+COPY --from=node /app/dist/ng-rails/browser /usr/share/nginx/html
+COPY ./config/nginx.conf /etc/nginx/conf.d/default.conf
 
+# docker build -t ng-rails .
+# docker run -p 8080:80 ng-rails
