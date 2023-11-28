@@ -1,6 +1,7 @@
 # NgRails
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.3.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.3.  
+Open project in [Stackblitz](https://stackblitz.com/github/vegeta03/ng-rails)
 
 ## Development server
 
