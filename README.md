@@ -11,7 +11,7 @@
 
 `docker compose up --build`
 
-## Usefull Docker commands
+## Useful Docker commands
 
 To delete all Docker images and containers, you can use a combination of Docker commands. Be cautious with these commands, as they will remove all your Docker containers and images, which is irreversible. Ensure that you really want to remove everything before proceeding.
 
