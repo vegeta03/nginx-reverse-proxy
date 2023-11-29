@@ -1,0 +1,26 @@
+version: '3.8'
+services:
+  nginx_proxy:
+    build: ./
+    ports:
+      - "80:80"
+    depends_on:
+      - angular_app
+      - rails_app
+    networks:
+      - app-network
+
+  angular_app:
+    build: ./ng-rails
+    depends_on:
+      - rails_app
+    networks:
+      - app-network
+
+  rails_app:
+    build: ./ror-sample
+    networks:
+      - app-network
+
+networks:
+  app-network:
