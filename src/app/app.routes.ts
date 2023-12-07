@@ -1,10 +1,9 @@
 import { Routes } from '@angular/router';
 
-import { FirstPageComponent, SecondPageComponent } from './components';
+import { HomeComponent, SecondPageComponent } from './components';
 
 export const routes: Routes = [
-  { path: 'second', component: SecondPageComponent },
-  { path: 'first', component: FirstPageComponent },
-  { path: '**', pathMatch: 'full', redirectTo: 'first' },
-  { path: '', pathMatch: 'full', redirectTo: 'first' },
+  { path: 'page2', component: SecondPageComponent },
+  { path: '', pathMatch: 'full', component: HomeComponent },
+  { path: '**', pathMatch: 'full', component: HomeComponent }
 ];
