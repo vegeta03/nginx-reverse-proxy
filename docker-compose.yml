@@ -1,6 +1,6 @@
 version: '3.8'
 services:
-  nginx_proxy:
+  httpd_proxy:
     build: ./
     ports:
       - "80:80"
