@@ -1,26 +1,32 @@
 version: '3.8'
+
 services:
-  nginx_proxy:
-    build: ./
+  angular:
+    build:
+      context: ./ng-rails
+      dockerfile: Dockerfile # Adjust the path to your Angular Dockerfile
+    networks:
+      - app-network
+
+  rails:
+    build:
+      context: ./ror-sample
+      dockerfile: Dockerfile # Adjust the path to your Rails Dockerfile
+    networks:
+      - app-network
+
+  nginx-reverse-proxy:
+    build:
+      context: .
+      dockerfile: Dockerfile # Adjust the path to your NGINX Dockerfile
+    depends_on:
+      - angular
+      - rails
     ports:
-      - "80:80"
-    depends_on:
-      - angular_app
-      - rails_app
-    networks:
-      - app-network
-
-  angular_app:
-    build: ./ng-rails
-    depends_on:
-      - rails_app
-    networks:
-      - app-network
-
-  rails_app:
-    build: ./ror-sample
+      - "8080:8080"
     networks:
       - app-network
 
 networks:
   app-network:
+    driver: bridge
